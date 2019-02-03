@@ -1,10 +1,39 @@
 <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<!-- <page-router-outlet>
+<!-- <page-router-outlet></page-router-outlet> -->
 
-</page-router-outlet> -->
-<StackLayout class="action-bar-title">
-  <Label text="Your App" class="font-weight-bold" color="blue"></Label>
+<StackLayout class="form">
+
+  <StackLayout class="input-field">
+    <TextField class="input"></TextField>
+    <StackLayout class="hr-light"></StackLayout>
+  </StackLayout>
+
+  <StackLayout class="input-field">
+    <Label text="Option 2" class="label font-weight-bold m-b-5"></Label>
+    <TextField class="input"></TextField>
+    <StackLayout class="hr-light"></StackLayout>
+  </StackLayout>
+
+  <GridLayout class="input-field input-sides" rows="auto, auto" columns="*,*">
+    <Label text="Option 3" class="label font-weight-bold" row="0" col="0"></Label>
+    <TextField class="input right" row="0" col="1"></TextField>
+    <StackLayout class="hr-light" row="1" colSpan="2"></StackLayout>
+  </GridLayout>
+
+  <TextField hint="Option 4" class="input input-border"></TextField>
+
+  <TextField class="input input-rounded m-t-10"></TextField>
+
+  <Image src="https://placem.at/people?w=150" width="150" class="img-circle m-y-20"></Image>
+
+  <Button class="btn btn-primary" text="Botão"></Button>
+
 </StackLayout>
+
+<!-- <StackLayout class="action-bar-title">
+  <Label text="Your App" class="font-weight-bold" color="blue"></Label>
+  <Button class="btn btn-primary" text="huehue"></Button>
+</StackLayout> -->
 
 
 <!-- <WrapLayout orientation="horizontal">
