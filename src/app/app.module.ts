@@ -4,6 +4,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
+import { SignUpComponent } from "./sign-up/sign-up.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -21,7 +22,8 @@ import { SignInComponent } from "./sign-in/sign-in.component";
   ],
   declarations: [
     AppComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   providers: [],
   schemas: [
