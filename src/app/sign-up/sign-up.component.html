@@ -1,4 +1,4 @@
-<ActionBar title="Criação de Conta" class="action-bar"></ActionBar>
+<ActionBar title="TaskManager - Criar Conta" class="action-bar"></ActionBar>
 
 <ScrollView orientation="vertical" sdkExampleTitle sdkToggleNavButton>
   <StackLayout class="page">
@@ -29,5 +29,6 @@
     </StackLayout>
 
     <Button text="criar conta" class="btn btn-primary"></Button>
+    <Button text="login" [nsRouterLink]="['/sign-in']" pageTransition="slideBottom" class="btn btn-outline"></Button>
   </StackLayout>
 </ScrollView>
