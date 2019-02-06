@@ -12,7 +12,7 @@ import { NSAngular2TokenService } from './shared/ns-angular2-token/ns-angular2-t
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 @NgModule({
   bootstrap: [
@@ -20,7 +20,8 @@ import { NSAngular2TokenService } from './shared/ns-angular2-token/ns-angular2-t
   ],
   imports: [
     NativeScriptModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NativeScriptHttpClientModule
   ],
   declarations: [
     AppComponent,
