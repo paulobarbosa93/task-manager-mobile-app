@@ -1,24 +1,24 @@
 <ActionBar title="TaskManager - Login" class="action-bar"></ActionBar>
 
-<StackLayout class="page">
+<ScrollView orientation="vertical" sdkExampleTitle sdkToggleNavButton>
+  <StackLayout class="page">
+    <StackLayout class="form">
+      <Image src="~/images/app_icon.png" class="m-20"></Image>
 
-  <StackLayout class="form">
-    <Image src="~/images/app_icon.png" class="m-20"></Image>
+      <StackLayout class="input-field">
+        <Label text="Email" class="label font-weight-bold m-b-5"></Label>
+        <TextField class="input" keyboardType="email" autocapitalizationType="none" autocorrect="false"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+      </StackLayout>
 
-    <StackLayout class="input-field">
-      <Label text="Email" class="label font-weight-bold m-b-5"></Label>
-      <TextField class="input" keyboardType="email" autocapitalizationType="none" autocorrect="false"></TextField>
-      <StackLayout class="hr-light"></StackLayout>
+      <StackLayout class="input-field">
+        <Label text="Senha" class="label font-weight-bold m-b-5"></Label>
+        <TextField class="input" secure="true"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+      </StackLayout>
+
+      <Button text="entrar" class="btn btn-primary"></Button>
+      <Button text="criar conta" [nsRouterLink]="['/sign-up']" pageTransition="slideTop" class="btn btn-outline"></Button>
     </StackLayout>
-
-    <StackLayout class="input-field">
-      <Label text="Senha" class="label font-weight-bold m-b-5"></Label>
-      <TextField class="input" secure="true"></TextField>
-      <StackLayout class="hr-light"></StackLayout>
-    </StackLayout>
-
-    <Button text="entrar" class="btn btn-primary"></Button>
-    <Button text="criar conta" [nsRouterLink]="['/sign-up']" pageTransition="slideTop" class="btn btn-outline"></Button>
   </StackLayout>
-
-</StackLayout>
+</ScrollView>
