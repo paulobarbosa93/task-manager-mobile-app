@@ -1,10 +1,11 @@
 // angular imports
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { ReactiveFormsModule } from '@angular/forms';
 
 // nativescript imports
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // app core imports
 import { AppRoutingModule } from "./app-routing.module";
@@ -38,7 +39,9 @@ import 'rxjs/add/observable/throw';
   imports: [
     NativeScriptModule,
     AppRoutingModule,
-    NativeScriptHttpModule
+    NativeScriptFormsModule,
+    NativeScriptHttpModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
