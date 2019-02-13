@@ -15,6 +15,10 @@ export class TasksComponent {
       {id: 2, title: 'Ir a academia', done: false},
       {id: 3, title: 'Seguir a dieta', done: false},
       {id: 4, title: 'Estudar todos os dias', done: false},
+      {id: 5, title: 'Tomar água', done: false},
+      {id: 5, title: 'Fazer AEJ', done: false},
+      {id: 5, title: 'Assistir videoaulas', done: false},
+      {id: 5, title: 'Assistir série', done: false},
       {id: 5, title: 'Tomar água', done: false}
     ];
   }
