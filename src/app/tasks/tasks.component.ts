@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'tasks',
   moduleId: module.id,
-  templateUrl: './tasks.component.html'
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css']
 })
 
 export class TasksComponent {
@@ -14,13 +15,13 @@ export class TasksComponent {
     this.tasks = [
       {id: 1, title: 'Comprar notebook novo', done: false},
       {id: 2, title: 'Ir a academia', done: false},
-      {id: 3, title: 'Seguir a dieta', done: false},
+      {id: 3, title: 'Seguir a dieta', done: true},
       {id: 4, title: 'Estudar todos os dias', done: false},
       {id: 5, title: 'Tomar água', done: false},
-      {id: 5, title: 'Fazer AEJ', done: false},
-      {id: 5, title: 'Assistir videoaulas', done: false},
-      {id: 5, title: 'Assistir série', done: false},
-      {id: 5, title: 'Tomar água', done: false}
+      {id: 6, title: 'Fazer AEJ', done: true},
+      {id: 7, title: 'Assistir videoaulas', done: false},
+      {id: 8, title: 'Assistir série', done: false},
+      {id: 9, title: 'Tomar água', done: false}
     ];
 
     this.setIcons();
