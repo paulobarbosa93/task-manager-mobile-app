@@ -20,6 +20,7 @@ import { TasksComponent } from "./tasks/tasks.component";
 // service imports
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './shared/auth.service';
+import { TaskService } from './tasks/shared/task.service';
 import { TokenService } from './shared/token.service';
 
 // rxjs operators
@@ -54,7 +55,8 @@ import 'rxjs/add/observable/throw';
   providers: [
     AuthGuard,
     AuthService,
-    TokenService
+    TokenService,
+    TaskService
   ],
   schemas: [
     NO_ERRORS_SCHEMA
