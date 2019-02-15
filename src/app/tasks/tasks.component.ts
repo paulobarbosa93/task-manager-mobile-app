@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Task } from './shared/task.model';
 import { TaskService } from './shared/task.service';
+
 import * as dialogs from 'ui/dialogs';
 
 @Component({
@@ -16,7 +18,7 @@ export class TasksComponent implements OnInit{
   public icons: Map<string, string> = new Map<string, string>();
   public newTask: Task;
 
-  public constructor(private taskService: TaskService){
+  public constructor(private taskService: TaskService, private router: Router){
     this.newTask = new Task(null, '');
     this.setIcons();
   }
@@ -71,12 +73,18 @@ export class TasksComponent implements OnInit{
       });
   }
 
-  public checkBoxIcon(task: any){
+  public checkBoxIcon(task: any): string {
     if(task.done) {
       return this.icons.get('checked');
     }else {
       return this.icons.get('unchecked');
     }
+  }
+
+  public onItemTap(args): void {
+    let index = args.index;
+    let task = this.tasks[index];
+    this.router.navigate(['/tasks', task.id]);
   }
 
   private setIcons(): void {

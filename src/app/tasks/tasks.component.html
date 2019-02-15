@@ -5,7 +5,7 @@
     <TextField col="0" class="input" hint="Digite uma tarefa..." [(ngModel)]="newTask.title" (returnPress)="createTask()"></TextField>
     <Label col="1" [text]="icons.get('add')" class="fa" (tap)="createTask()"></Label>
   </GridLayout>
-  <ListView class="list-group" row="1" [items]="tasks">
+  <ListView class="list-group" row="1" [items]="tasks" (itemTap)="onItemTap($event)">
     <ng-template let-task="item">
       <GridLayout class="list-group-item" columns="35px, *, auto">
         <Label col="0" [text]="checkBoxIcon(task)" class="fa" (tap)="taskDone(task)"></Label>
