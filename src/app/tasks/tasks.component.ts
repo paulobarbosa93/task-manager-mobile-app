@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Task } from './shared/task.model';
+import { TaskService } from './shared/task.service';
+import * as dialogs from 'ui/dialogs';
 
 @Component({
   selector: 'tasks',
@@ -7,31 +11,64 @@ import { Component } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 
-export class TasksComponent {
-  public tasks: any[];
+export class TasksComponent implements OnInit{
+  public tasks: Array<Task>;
   public icons: Map<string, string> = new Map<string, string>();
+  public newTask: Task;
 
-  public constructor(){
-    this.tasks = [
-      {id: 1, title: 'Comprar notebook novo', done: false},
-      {id: 2, title: 'Ir a academia', done: false},
-      {id: 3, title: 'Seguir a dieta', done: true},
-      {id: 4, title: 'Estudar todos os dias', done: false},
-      {id: 5, title: 'Tomar água', done: false},
-      {id: 6, title: 'Fazer AEJ', done: true},
-      {id: 7, title: 'Assistir videoaulas', done: false},
-      {id: 8, title: 'Assistir série', done: false},
-      {id: 9, title: 'Tomar água', done: false}
-    ];
-
+  public constructor(private taskService: TaskService){
+    this.newTask = new Task(null, '');
     this.setIcons();
   }
 
-  private setIcons(): void {
-    this.icons.set('trash', String.fromCharCode(0xf014));
-    this.icons.set('add', String.fromCharCode(0xf055));
-    this.icons.set('checked', String.fromCharCode(0xf14a));
-    this.icons.set('unchecked', String.fromCharCode(0xf096));
+  public ngOnInit(): void {
+    this.taskService.getAll()
+      .subscribe(
+      tasks => this.tasks = tasks = tasks.sort((a, b) => b.id - a.id),
+      error => alert('Ocorreu um erro no servidor, tente mais tarde.')
+      )
+  }
+
+  public createTask(): void {
+    this.newTask.title = this.newTask.title.trim();
+
+    if (!this.newTask.title) {
+      alert('A tarefa deve ter um título.');
+    } else {
+      this.taskService.create(this.newTask)
+        .subscribe(
+        (task) => {
+          this.tasks.unshift(task);
+          this.newTask = new Task(null, '');
+        },
+        () => alert('Ocorreu um erro no servidor, tente mais tarde.')
+        );
+    }
+  }
+
+  public taskDone(task: Task){
+    task.done = !task.done;
+
+    this.taskService.update(task)
+      .subscribe({
+        error: () => {
+          task.done = !task.done;
+          alert('Ocorreu um erro no servidor, tente mais tarde.');
+        }
+      });
+  }
+
+  public deleteTask(task: Task): void {
+    dialogs.confirm(`Deseja realmente exluir a tarefa "${task.title}?"`)
+      .then(result => {
+        if (result) {
+          this.taskService.delete(task.id)
+            .subscribe(
+              () => this.tasks = this.tasks.filter(t => t !== task),
+              () => alert('Ocorreu um erro no servidor.')
+            );
+        }
+      });
   }
 
   public checkBoxIcon(task: any){
@@ -40,5 +77,12 @@ export class TasksComponent {
     }else {
       return this.icons.get('unchecked');
     }
+  }
+
+  private setIcons(): void {
+    this.icons.set('trash', String.fromCharCode(0xf014));
+    this.icons.set('add', String.fromCharCode(0xf055));
+    this.icons.set('checked', String.fromCharCode(0xf14a));
+    this.icons.set('unchecked', String.fromCharCode(0xf096));
   }
 }
