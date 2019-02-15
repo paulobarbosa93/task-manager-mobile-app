@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 
 export class TasksComponent {
   public tasks: any[];
+  public icons: Map<string, string> = new Map<string, string>();
 
   public constructor(){
     this.tasks = [
@@ -21,5 +22,22 @@ export class TasksComponent {
       {id: 5, title: 'Assistir série', done: false},
       {id: 5, title: 'Tomar água', done: false}
     ];
+
+    this.setIcons();
+  }
+
+  private setIcons(): void {
+    this.icons.set('trash', String.fromCharCode(0xf014));
+    this.icons.set('add', String.fromCharCode(0xf055));
+    this.icons.set('checked', String.fromCharCode(0xf14a));
+    this.icons.set('unchecked', String.fromCharCode(0xf096));
+  }
+
+  public checkBoxIcon(task: any){
+    if(task.done) {
+      return this.icons.get('checked');
+    }else {
+      return this.icons.get('unchecked');
+    }
   }
 }

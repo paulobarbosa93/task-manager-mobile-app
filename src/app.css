@@ -20,3 +20,10 @@ refer to http://docs.nativescript.org/ui/theme.
   margin: 20px;
   padding: 10px;
 }
+
+.fa {
+  font-family: 'FontAwesome', 'fontawesome-webfont';
+  font-size: 28px;
+  color: #964945;
+  vertical-align: middle;
+}
