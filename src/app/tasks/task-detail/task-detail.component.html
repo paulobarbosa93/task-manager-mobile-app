@@ -1,1 +1,45 @@
-<Label text="Detalhes"></Label>
+<ActionBar title="TaskManager - Detalhes" class="action-bar"></ActionBar>
+
+<ScrollView orientation="vertical" sdkExampleTitle sdkToggleNavButton>
+  <StackLayout class="page">
+    <StackLayout class="form" [formGroup]="form">
+      <StackLayout class="input-field">
+        <Label text="Título" class="label font-weight-bold m-b-5"></Label>
+        <TextField class="input" formControlName="title"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+
+        <StackLayout *ngIf="form.get('title').invalid && form.get('title').dirty">
+          <Label *ngIf="form.get('title').errors.required" class="text-right text-danger" text="campo obrigatório"></Label>
+          <Label *ngIf="form.get('title').errors.minlength" class="text-right text-danger" text="deve ter no mínimo 5 caracteres"></Label>
+          <Label *ngIf="form.get('title').errors.maxlength" class="text-right text-danger" text="deve ter no máximo 255 caracteres"></Label>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout class="input-field">
+        <Label text="Descrição" class="label font-weight-bold m-b-5"></Label>
+        <TextField class="input" formControlName="description"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+      </StackLayout>
+
+      <StackLayout class="input-field">
+        <Label text="Prazo de Entrega" class="label font-weight-bold m-b-5"></Label>
+        <TextField class="input" formControlName="deadline" editable="false"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+      </StackLayout>
+
+      <GridLayout class="input-field" columns="*, auto">
+        <Label col="0" text="Tarefa feita" class="label font-weight-bold m-b-5"></Label>
+        <Switch col="1" formControlName="done" class="switc"></Switch>
+      </GridLayout>
+    </StackLayout>
+
+    <StackLayout *ngIf="formErrors" class="formErrors">
+      <Label class="font-weight-bold" text="Ocorreu um erro na atualização da tarefa"></Label>
+      <Label *ngFor="let error of formErrors" class="text-danger" [text]="error" textWrap="true"></Label>
+    </StackLayout>
+
+    <ActivityIndicator [busy]="submitted" *ngIf="submitted" horizontalAlignment="center"></ActivityIndicator>
+
+    <Button text="atualizar" class="btn btn-primary" [isEnabled]="form.valid && !submitted" (tap)="updateTask()"></Button>
+  </StackLayout>
+</ScrollView>
