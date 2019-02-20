@@ -11,16 +11,11 @@ import { TimePicker } from 'ui/time-picker';
 })
 
 export class DateTimePickerModalComponent implements OnInit {
+  public preSelectedDateTime: Date;
+  public datePicker: DatePicker;
+  public timePicker: TimePicker;
 
-    public preSelectedDateTime: Date;
-    public datePicker: DatePicker;
-    public timePicker: TimePicker;
+  public constructor(private modalParams: ModalDialogParams, private page: Page){ }
 
-    public constructor(private modalParams: ModalDialogParams, private page: Page){
-
-    }
-
-    public ngOnInit(){
-
-    }
+  public ngOnInit(){ }
 }

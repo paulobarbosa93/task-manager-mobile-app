@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewContainerRef } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+
+import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
+import { DateTimePickerModalComponent } from '../../datetime-picker-modal/datetime-picker-modal.component'
 
 import { Task } from '../shared/task.model'
 import { TaskService } from '../shared/task.service'
@@ -18,7 +21,9 @@ export class TaskDetailComponent implements OnInit {
   public constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: ModalDialogService,
+    private vcRef: ViewContainerRef
   ) {
     this.form = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
@@ -55,5 +60,14 @@ export class TaskDetailComponent implements OnInit {
       () => alert('Tarefa atualizada com sucesso.'),
       () => alert('Ocorreu um erro no servidor, tente novamente mais tarde.')
       )
+  }
+
+  public showDatetimePickerModal(): void {
+    let modalOptions: ModalDialogOptions = {
+      fullscreen: false,
+      viewContainerRef: this.vcRef
+    };
+
+    this.modalService.showModal(DateTimePickerModalComponent, modalOptions);
   }
 }
