@@ -16,13 +16,13 @@ import { DateTimePickerModalComponent } from "./datetime-picker-modal/datetime-p
 import { HomeComponent } from "./home/home.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
-import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskDetailComponent } from "./tasks/task-detail/task-detail.component";
 
 // service imports
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './shared/auth.service';
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { TaskService } from './tasks/shared/task.service';
 import { TokenService } from './shared/token.service';
 
