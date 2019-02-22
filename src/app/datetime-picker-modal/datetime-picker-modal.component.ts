@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
 import { Page } from 'ui/page';
-import { DatePicker } from 'ui/date-picker';
-import { TimePicker } from 'ui/time-picker';
+import { DatePicker } from 'tns-core-modules/ui/date-picker';
+import { TimePicker } from 'tns-core-modules/ui/time-picker';
 
 @Component({
   moduleId: module.id,
@@ -23,23 +23,40 @@ export class DateTimePickerModalComponent implements OnInit {
     }
   }
 
-  public ngOnInit(){
-    this.setDatePicker();
-    this.setTimePicker();
+  public ngOnInit(){ }
+
+  public onDatePickerLoaded(args) {
+    this.setDatePicker(args);
   }
 
-  public setDatePicker(){
-    this.datePicker = <DatePicker>this.page.getViewById<DatePicker>('datePicker');
-    this.datePicker.height = 170;
+  public onTimePickerLoaded(args) {
+    this.setTimePicker(args);
+  }
+
+  public setDatePicker(args){
+    this.datePicker = <DatePicker>args.object;
+    this.datePicker.height = 150;
     this.datePicker.year = this.preSelectedDateTime.getFullYear();
     this.datePicker.month = this.preSelectedDateTime.getMonth() + 1;
     this.datePicker.day = this.preSelectedDateTime.getDate();
   }
 
-  public setTimePicker(){
-    this.timePicker = <TimePicker>this.page.getViewById<TimePicker>('timePicker');
-    this.timePicker.height = 170;
+  public setTimePicker(args){
+    this.timePicker = <TimePicker>args.object;
+    this.timePicker.height = 150;
     this.timePicker.hour = this.preSelectedDateTime.getHours();
     this.timePicker.minute = this.preSelectedDateTime.getMinutes();
+  }
+
+  public sendNewDateTime() {
+    let newDateTime: Date = new Date(
+      this.datePicker.year,
+      this.datePicker.month - 1,
+      this.datePicker.day,
+      this.timePicker.hour,
+      this.timePicker.minute
+    )
+
+    this.modalParams.closeCallback(newDateTime);
   }
 }

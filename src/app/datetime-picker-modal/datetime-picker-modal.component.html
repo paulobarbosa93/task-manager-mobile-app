@@ -1,6 +1,6 @@
 <StackLayout>
-  <DatePicker id="datePicker"></DatePicker>
-  <TimePicker id="timePicker"></TimePicker>
+  <DatePicker id="datePicker" (loaded)="onDatePickerLoaded($event)"></DatePicker>
+  <TimePicker id="timePicker" (loaded)="onTimePickerLoaded($event)"></TimePicker>
 
-  <Button class="btn btn-primary" text="ok"></Button>
+  <Button class="btn btn-primary" text="ok" (tap)="sendNewDateTime()"></Button>
 </StackLayout>
