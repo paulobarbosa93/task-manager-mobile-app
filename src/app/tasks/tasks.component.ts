@@ -3,9 +3,12 @@ import { Router } from '@angular/router';
 
 import { Task } from './shared/task.model';
 import { TaskService } from './shared/task.service';
-import { Page } from 'ui/page';
 
 import * as dialogs from 'ui/dialogs';
+import { Page } from 'ui/page';
+
+import * as SocialShare from 'nativescript-social-share';
+
 
 @Component({
   selector: 'tasks',
@@ -93,10 +96,20 @@ export class TasksComponent implements OnInit{
     this.router.navigate(['/tasks', task.id]);
   }
 
+  public shareTasks() {
+    let taskListString = this.tasks
+      .map(task => `${task.doneCheckBoxString} ${task.title}`)
+      .join(", \n")
+      .trim();
+
+    SocialShare.shareText(taskListString);
+  }
+
   private setIcons(): void {
     this.icons.set('trash', String.fromCharCode(0xf014));
     this.icons.set('add', String.fromCharCode(0xf055));
     this.icons.set('checked', String.fromCharCode(0xf14a));
     this.icons.set('unchecked', String.fromCharCode(0xf096));
+    this.icons.set('share', String.fromCharCode(0xf045));
   }
 }

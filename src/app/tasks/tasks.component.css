@@ -8,5 +8,12 @@
 
 .done-task {
   text-decoration: line-through;
+}
 
+ActionBar {
+  padding-right: 10px;
+}
+
+ActionBar Label {
+  color: #ccc;
 }
