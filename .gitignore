@@ -8,5 +8,5 @@ npm-debug.log
 lib/
 tmp/
 typings/
-
+keys/
 report/
